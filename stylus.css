@@ -1,208 +1,125 @@
-// Variables
-$x: false;
-$midSize: 250px;
-
-// Mixins
-@mixin setup($display, $position, $margin, $top: null, $right: null, $bottom: null, $left: null) {
-    display: $display;
-    position: $position;
-    margin: $margin;
-    top: $top;
-    right: $right;
-    bottom: $bottom;
-    left: $left;
-}
-
-@mixin font($font-family, $font-size, $letter-spacing, $font-weight, $line-height: 1) {
-    font-family: $font-family;
-    font-size: $font-size;
-    letter-spacing: $letter-spacing;
-    font-weight: $font-weight;
-    line-height: $line-height;
-}
-
-// General styles
+/* Reset and basic styles */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    transition: 0.35s ease;
 }
 
 body {
-    @include font('Open Sans', 18px, 0px, 400, 28px);
-    background: url('http://kingofwallpapers.com/leaves/leaves-016.jpg') right no-repeat;
-    background-size: cover;
-
-    &:before {
-        content: "";
-        @include setup($x, fixed, 0, 0, 0, 0, 0);
-        background-color: rgba(255, 255, 255, 0.92);
-    }
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
 }
 
-.caps {
-    text-transform: uppercase;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.top-bar {
+    background-color: #848484;
+    color: white;
+    padding: 20px 0;
+}
+
+.name {
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 100;
+    text-align: center;
+}
+
+.social-links {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.social-link {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    background-size: cover;
+}
+
+.social-link.twitter {
+    background-image: url('https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_Twitter-07-128.png');
+}
+
+.social-link.pinterest {
+    background-image: url('https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_Pinterest-23-128.png');
+}
+
+.social-link.linkedin {
+    background-image: url('https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_LinkedIn-128.png');
+}
+
+.side-bar {
+    background-color: #F7E0C1;
+    padding: 20px;
+    margin-top: 20px;
+    width: 300px;
+    float: left;
+}
+
+.mugshot {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 150px; /* Adjust size as needed */
+    border-radius: 50%; /* Creates a circular shape for the image */
+}
+
+.side-bar address {
+    margin-bottom: 20px;
+}
+
+.side-bar h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.side-bar ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+.content {
+    margin-left: 320px; /* Adjust to match sidebar width + margin */
+    background-color: white;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.separator {
+    width: 100%;
+    height: 2px;
+    background-color: #999;
+    margin: 20px 0;
+}
+
+.profile-section {
+    margin-bottom: 40px;
+}
+
+.profile-section h2,
+.job h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
 .justified {
     text-align: justify;
+    line-height: 1.6;
 }
 
-p.light {
+.light {
     color: #777;
-}
-
-h2 {
-    @include font('Open Sans', 30px, 5px, 600, 40px);
-    color: black;
-}
-
-h3 {
-    @include font('Open Sans', 21px, 1px, 600, 28px);
-    color: black;
-}
-
-.page {
-    width: 90%;
-    max-width: 1200px;
-    margin: 80px auto;
-    background-color: white;
-    box-shadow: 6px 10px 28px 0px rgba(0, 0, 0, 0.4);
-}
-
-.top-bar {
-    height: 220px;
-    background-color: #848484;
-    color: white;
-}
-
-.name {
-    @include setup($x, absolute, $x, $x, 0, 0, calc(350px + 5%));
-    height: 120px;
-    text-align: center;
-    @include font('Raleway', 58px, 8px, 100, 60px);
-
-    & div {
-        width: 94%;
-    }
-}
-
-.side-bar {
-    @include setup($x, absolute, $x, 60px, $x, 0, 5%);
-    width: 350px;
-    background-color: #F7E0C1;
-    padding: 320px 30px 50px;
-}
-
-.mugshot {
-    @include setup($x, absolute, $x, 50px, $x, $x, 70px);
-    height: 210px;
-    width: 210px;
-
-    & .logo {
-        margin: -23px;
-    }
-}
-
-.logo {
-    @include setup($x, absolute, $x, 0, $x, $x, 0);
-    z-index: 100;
-    margin: 0;
-    color: black;
-    height: $midSize;
-    width: $midSize;
-
-    & .logo-svg {
-        height: 100%;
-        width: 100%;
-        stroke: black;
-        cursor: pointer;
-    }
-
-    & .logo-text {
-        @include setup($x, absolute, $x, 58%, 16%);
-        cursor: pointer;
-        @include font("Montserrat", $midSize / 5 + $midSize / 50, 0px, 400, $midSize / 5 + $midSize / 30);
-    }
-}
-
-.social {
-    padding-left: 60px;
-    margin-bottom: 20px;
-    cursor: pointer;
-
-    &:before {
-        content: "";
-        @include setup($x, absolute, $x, -4px, $x, $x, 10px);
-        height: 35px;
-        width: 35px;
-        background-size: cover !important;
-    }
-
-    &.twitter:before {
-        background: url('https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_Twitter-07-128.png') center no-repeat;
-    }
-
-    &.pinterest:before {
-        background: url('https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_Pinterest-23-128.png') center no-repeat;
-    }
-
-    &.linked-in:before {
-        background: url('https://cdn3.iconfinder.com/data/icons/social-media-2026/60/Socialmedia_icons_LinkedIn-128.png') center no-repeat;
-    }
-}
-
-.side-header {
-    @include font('Open Sans', 18px, 4px, 600, 28px);
-    margin: 60px auto 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #888;
-}
-
-.list-thing {
-    padding-left: 25px;
-    margin-bottom: 10px;
-}
-
-.content-container {
-    margin-right: 0;
-    width: calc(95% - 350px);
-    padding: 25px 40px 50px;
-
-    & > * {
-        margin: 0 auto 25px;
-    }
-
-    & > h3 {
-        margin: 0 auto 5px;
-    }
-
-    & > p.long-margin {
-        margin: 0 auto 50px;
-    }
-}
-
-.title {
-    width: 80%;
-    text-align: center;
-}
-
-.separator {
-    width: 240px;
-    height: 2px;
-    background-color: #999;
-}
-
-.greyed {
-    background-color: #DDD;
-    width: 100%;
-    max-width: 580px;
-    text-align: center;
-    @include font('Open Sans', 18px, 6px, 600, 28px);
-}
-
-@media screen and (max-width: 1150px) {
-    .name {
-        color: white;
-        @include font('Raleway', 38px, 6px, 100, 48px);
-    }
 }
